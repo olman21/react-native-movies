@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { SearchBar } from 'react-native-elements';
 
-type searchFn = (term: string) => void;
 export interface SearchParams {
-    onSearch?: searchFn
+    onSearch?: (term: string) => void,
+    onClear?: () => void
  }
 
-const SearchComponent = ({ onSearch }: SearchParams) => {
+const SearchComponent = ({ onSearch, onClear }: SearchParams) => {
     const [searchTerm, setSearchTerm] = useState("");
 
     const changedText = (text: string) => {
@@ -14,7 +14,7 @@ const SearchComponent = ({ onSearch }: SearchParams) => {
         onSearch && onSearch(text);
     };
     return <>
-        <SearchBar placeholder="Search" onChangeText={changedText} lightTheme={true} value={searchTerm}  />
+        <SearchBar placeholder="Search" onChangeText={changedText} onClear={onClear} lightTheme={true} value={searchTerm}  />
     </>
 };
 

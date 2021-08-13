@@ -2,7 +2,7 @@ export default interface Movie{
     id: number;
     poster_path: string;
     overview: string;
-    release_date: Date;
+    release_date: string;
     original_title: string;
     title: string;
     backdrop_path: string;

@@ -39,8 +39,13 @@ const MovieList = () => {
             (async function(){
                 const searched = await searchMovies(text);
                 setMoviesResult(searched);
-            })();            
-        }} />
+            })();           
+        }}
+        onClear={async () => {
+            console.log("onClear")
+            const popular = await loadPopular();
+            setMoviesResult(popular);
+        }}  />
         <FlatList data={moviesResult?.results}
                   renderItem={({ item }) => <MovieItem Movie={item}></MovieItem>}
                   keyExtractor={item => item.id.toString() }>
