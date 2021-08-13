@@ -16,15 +16,27 @@ const MovieList = () => {
     const [moviesResult, setMoviesResult] = useState<MovieSearchResult>();
 
     const searchMovies = async (text: string) =>{
-        const apiUrl = utilities.buildApiUrl("search/movie", { query: encodeURI(text) })
-        const movies = await axios.get<MovieSearchResult>(apiUrl);
-        return movies.data;
+        const apiUrl = utilities.buildApiUrl("search/movie", { query: encodeURI(text) });
+        try{
+            const movies = await axios.get<MovieSearchResult>(apiUrl);
+            return movies.data;
+        }
+        catch(error){
+            console.error(error);
+            throw error;
+        }
     };
     
     const loadPopular = async () => {
-        const apiUrl = utilities.buildApiUrl("movie/popular")
-        const movies = await axios.get<MovieSearchResult>(apiUrl);
-        return movies.data;
+        const apiUrl = utilities.buildApiUrl("movie/popular");
+        try{
+            const movies = await axios.get<MovieSearchResult>(apiUrl);
+            return movies.data;
+        }
+        catch(error){
+            console.error(error);
+            throw error;
+        }
     }
     
     useEffect(()=>{
