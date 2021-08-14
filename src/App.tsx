@@ -18,15 +18,19 @@ import {
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
+
 import {
   Colors
 } from 'react-native/Libraries/NewAppScreen';
 
 
 import MovieList from './components/movie-list';
+import MovieDetail from './components/movie-detail';
+import { RootStackParamList } from './routing/RootStackParamList';
+import TvShowDetail from './components/tvshow-detail';
 
 
-const MainStack = createNativeStackNavigator();
+const MainStack = createNativeStackNavigator<RootStackParamList>();
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -38,9 +42,11 @@ const App = () => {
   return (
       <NavigationContainer>
         <MainStack.Navigator>
-          <MainStack.Screen name="movie-search" component={MovieList} options={{
-            title: "Movies"
+          <MainStack.Screen name="MovieSearch" component={MovieList} options={{
+            title: "Search"
           }} />
+          <MainStack.Screen name="MovieDetail" component={MovieDetail} />
+          <MainStack.Screen name="TvShowDetail" component={TvShowDetail} />
         </MainStack.Navigator>
       </NavigationContainer>
   );
