@@ -42,3 +42,6 @@ Android
 npx react-native run-android
 ```
 
+## Screenshots
+
+<img src="https://github.com/olman21/react-native-movies/raw/master/screenshots/Screenshot1.png" width="100" height="100">
