@@ -25,7 +25,7 @@ const searchMovies = async (text: string) => {
 };
 
 const loadPopular = async () => {
-  const apiUrl = utilities.buildApiUrl('movie/popular');
+  const apiUrl = utilities.buildApiUrl('movie/now_playing');
   try {
     const movies = await axios.get<MovieSearchResult>(apiUrl);
     movies.data.results.forEach(r => (r.media_type = MediaType.Movie));

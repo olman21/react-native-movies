@@ -1,3 +1,4 @@
+import MediaType from './media-type';
 import Movie from './movie';
 import Person from './Person';
 import ReleaseDate from './release-date';
@@ -22,3 +23,10 @@ export default interface MovieDetail {
     results: ReleaseDate[];
   };
 }
+
+export const MovieDetailToMedia = (movieDetail: any) => {
+  const movie = movieDetail as unknown as Movie;
+  movie.media_type = MediaType.Movie;
+
+  return movie;
+};

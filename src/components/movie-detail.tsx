@@ -1,19 +1,28 @@
-import React from 'react';
-import {FlatList, Image, ScrollView, Text, TouchableOpacity, View} from 'react-native';
-import Movie from '../models/movie';
+import React, {useContext} from 'react';
+import {
+  FlatList,
+  Image,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../routing/RootStackParamList';
 import {RouteProp} from '@react-navigation/native';
 import axios from 'axios';
 import {useState} from 'react';
 import utilities from '../utilities';
-import MovieDetailModel from '../models/movie-detail';
+import MovieDetailModel, {MovieDetailToMedia} from '../models/movie-detail';
 import {useEffect} from 'react';
 import {StyleSheet} from 'react-native';
 import {Icon} from 'react-native-elements';
 import ReleaseDate from '../models/release-date';
 import CastCard from './cast-card';
 import RecommendationCard from './recommendation-card';
+import {FavoriteContext} from '../context/favorites';
+import MediaType from '../models/media-type';
+import FavoriteButton from './favorite-button';
 
 type MovieDetailScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -47,6 +56,10 @@ const getUSCertOutOfReleaseDates = (releaseDates: ReleaseDate[]) => {
   return firstCertification;
 };
 
+
+
+
+
 const MovieDetail = ({navigation, route}: Props) => {
   const [movie, setMovie] = useState<MovieDetailModel>();
 
@@ -55,6 +68,9 @@ const MovieDetail = ({navigation, route}: Props) => {
       const movieDetail = await loadMovieDetail(route.params.movieId);
       navigation.setOptions({
         title: movieDetail.title,
+        headerRight: () => (
+          <FavoriteButton Media={MovieDetailToMedia(movieDetail)} />
+        ),
       });
       setMovie(movieDetail);
     })();
@@ -119,9 +135,14 @@ const MovieDetail = ({navigation, route}: Props) => {
                 c => !!c.backdrop_path,
               )}
               renderItem={({item}) => (
-                  <TouchableOpacity onPress={()=> navigation.push("MovieDetail", { movieId: item.id })}>
-                      <RecommendationCard ImagePath={item.backdrop_path} Title={item.title}></RecommendationCard>
-                  </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() =>
+                    navigation.push('MovieDetail', {movieId: item.id})
+                  }>
+                  <RecommendationCard
+                    ImagePath={item.backdrop_path}
+                    Title={item.title}></RecommendationCard>
+                </TouchableOpacity>
               )}
               horizontal={true}></FlatList>
           </View>
@@ -133,7 +154,7 @@ const MovieDetail = ({navigation, route}: Props) => {
 
 const styles = StyleSheet.create({
   mainContainer: {
-      paddingBottom: 50
+    paddingBottom: 50,
   },
   backdropImage: {
     width: '100%',
@@ -209,6 +230,16 @@ const styles = StyleSheet.create({
     color: '#6D6D6D',
     fontSize: 15,
     marginVertical: 5,
+  },
+
+  favoriteButton: {
+    position: 'absolute',
+    top: 10,
+    right: 10,
+    borderRadius: 10,
+    backgroundColor: '#FFFFFF',
+    zIndex: 1,
+    padding: 10,
   },
 });
 

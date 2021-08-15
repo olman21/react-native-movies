@@ -16,12 +16,12 @@ import utilities from '../utilities';
 import {useEffect} from 'react';
 import {StyleSheet} from 'react-native';
 import {Icon} from 'react-native-elements';
-import ReleaseDate from '../models/release-date';
 import CastCard from './cast-card';
 import RecommendationCard from './recommendation-card';
-import TvShowDetailModel from '../models/tvshow-detail';
+import TvShowDetailModel, { TvShowDetailToMedia } from '../models/tvshow-detail';
 import TvContentRating from '../models/tv-content-rating';
 import SeasonCard from './season-card';
+import FavoriteButton from './favorite-button';
 
 type tvShowDetailScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -64,6 +64,9 @@ const tvShowDetail = ({navigation, route}: Props) => {
       const tvShowDetail = await loadtvShowDetail(route.params.tvShowId);
       navigation.setOptions({
         title: tvShowDetail.name,
+        headerRight: () => (
+          <FavoriteButton Media={TvShowDetailToMedia(tvShowDetail)} />
+        ),
       });
       setTvShow(tvShowDetail);
     })();

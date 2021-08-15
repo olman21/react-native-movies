@@ -1,54 +1,48 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * Generated with the TypeScript template
- * https://github.com/react-native-community/react-native-template-typescript
- *
- * @format
- */
-
 import React from 'react';
-import {
-  SafeAreaView,
-  StatusBar,
-  useColorScheme,
-} from 'react-native';
 
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import {NavigationContainer, RouteProp} from '@react-navigation/native';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
+import FavoriteContextProvider, {FavoriteContext} from './context/favorites';
+import MainStack from './routing/MainStack';
+import {TabsParamList} from './routing/TabsParamList';
+import FavoritesStack from './routing/FavoritesStack';
+import {Icon} from 'react-native-elements';
 
-import {
-  Colors
-} from 'react-native/Libraries/NewAppScreen';
+const Tabs = createBottomTabNavigator<TabsParamList>();
 
+const screenOptions = (route: RouteProp<TabsParamList, keyof TabsParamList>, color: string) => {
+  let iconName = '';
 
-import MovieList from './components/movie-list';
-import MovieDetail from './components/movie-detail';
-import { RootStackParamList } from './routing/RootStackParamList';
-import TvShowDetail from './components/tvshow-detail';
+  switch (route.name) {
+    case 'Favorites':
+      iconName = 'favorite';
+      break;
+    case 'Media':
+      iconName = 'subscriptions';
+      break;
+  }
 
-
-const MainStack = createNativeStackNavigator<RootStackParamList>();
+  return <Icon name={iconName} color={color} size={24} />;
+};
 
 const App = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
 
   return (
+    <FavoriteContextProvider>
       <NavigationContainer>
-        <MainStack.Navigator>
-          <MainStack.Screen name="MovieSearch" component={MovieList} options={{
-            title: "Search"
-          }} />
-          <MainStack.Screen name="MovieDetail" component={MovieDetail} />
-          <MainStack.Screen name="TvShowDetail" component={TvShowDetail} />
-        </MainStack.Navigator>
+        <Tabs.Navigator
+          screenOptions={({route}) => {
+            return {
+              headerShown: false,
+              tabBarIcon: ({color}) => screenOptions(route, color)
+            };
+          }}>
+          <Tabs.Screen name="Media" component={MainStack} />
+          <Tabs.Screen name="Favorites" component={FavoritesStack} />
+        </Tabs.Navigator>
       </NavigationContainer>
+    </FavoriteContextProvider>
   );
 };
 

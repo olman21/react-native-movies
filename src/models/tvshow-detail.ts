@@ -1,3 +1,4 @@
+import MediaType from './media-type';
 import Person from './Person';
 import ReleaseDate from './release-date';
 import Season from './season';
@@ -26,3 +27,9 @@ export default interface TvShowDetail {
   };
   seasons: Season[]
 }
+
+export const TvShowDetailToMedia = (tvShowDetail: TvShowDetail) => {
+  const tvShow = tvShowDetail as unknown as TVShow;
+  tvShow.media_type = MediaType.Tv;
+  return tvShow;
+};
