@@ -12,6 +12,13 @@ You can apply for an API key by clicking the "API" link from the left hand sideb
 
 First rename [example.env](https://github.com/olman21/react-native-movies/blob/master/example.env) file to .env and replace the ApiKey with the value got from MovieDb.
 
+```
+API_KEY=<YOUR API KEY>
+API_BASE_URL=https://api.themoviedb.org/3
+API_MEDIA_URL=https://image.tmdb.org/t/p
+FAV_STORAGE_KEY=MY_FAVORITES
+```
+
 Install all the dependencies.
 
 ```bash
