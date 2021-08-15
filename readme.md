@@ -44,4 +44,8 @@ npx react-native run-android
 
 ## Screenshots
 
-<img src="https://github.com/olman21/react-native-movies/raw/master/screenshots/Screenshot1.png" width="100" height="100">
+<img src="https://github.com/olman21/react-native-movies/raw/master/screenshots/Screenshot1.png" width="400" height="900">
+<img src="https://github.com/olman21/react-native-movies/raw/master/screenshots/Screenshot2.png" width="400" height="900">
+<img src="https://github.com/olman21/react-native-movies/raw/master/screenshots/Screenshot3.png" width="400" height="900">
+<img src="https://github.com/olman21/react-native-movies/raw/master/screenshots/Screenshot4.png" width="400" height="900">
+<img src="https://github.com/olman21/react-native-movies/raw/master/screenshots/Screenshot5.png" width="400" height="900">
