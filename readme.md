@@ -44,9 +44,8 @@ npx react-native run-android
 
 ## Screenshots
 
-:-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
-<img src="https://github.com/olman21/react-native-movies/raw/master/screenshots/Screenshot1.png" width="350" height="850">  |  ![](https://...Ocean.png)
-<img src="https://github.com/olman21/react-native-movies/raw/master/screenshots/Screenshot2.png" width="350" height="850">
-<img src="https://github.com/olman21/react-native-movies/raw/master/screenshots/Screenshot3.png" width="350" height="850">
-<img src="https://github.com/olman21/react-native-movies/raw/master/screenshots/Screenshot4.png" width="350" height="850">
-<img src="https://github.com/olman21/react-native-movies/raw/master/screenshots/Screenshot5.png" width="350" height="850">
+<img src="https://github.com/olman21/react-native-movies/raw/master/screenshots/Screenshot1.png" width="350" height="750">  |  ![](https://...Ocean.png) |
+<img src="https://github.com/olman21/react-native-movies/raw/master/screenshots/Screenshot2.png" width="350" height="750"> |
+<img src="https://github.com/olman21/react-native-movies/raw/master/screenshots/Screenshot3.png" width="350" height="750"> |
+<img src="https://github.com/olman21/react-native-movies/raw/master/screenshots/Screenshot4.png" width="350" height="750"> |
+<img src="https://github.com/olman21/react-native-movies/raw/master/screenshots/Screenshot5.png" width="350" height="750">
